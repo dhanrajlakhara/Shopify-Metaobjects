@@ -1,0 +1,34 @@
+========================================== <br/>
+{% comment %}
+if single value selected in metaObject field then we don't required looping.
+{% endcomment %}
+
+simple TEXT-FIELD - product.metafields.[NAMESPACE].[KEY].value.[field-key] 
+===========================================<br/>
+{{ product.metafields.custom.meals.value.name }}<br/>
+{{ product.metafields.custom.meals.value.description }}
+============================================
+{%- assign moreDetail =  product.metafields.custom.meal_new.value -%}
+{% for metaobject in moreDetail %}
+   {{ metaobject.name }}
+  {% endfor %}
+<br/>
+============================================= <br/>
+
+{% assign metaobjectId = "gid://shopify/Metaobject/14530347306" %}
+{% assign metaobject = all_metaobjects[metaobjectId] %}
+{% if metaobject %}
+  <p>Metaobject ID: {{ metaobject.id }}</p>
+  <p>Metafield 1: {{ metaobject.metafields.name }}</p>
+  <p>Metafield 2: {{ metaobject.metafields.name.value }}</p>
+  <!-- Add more metafields as needed -->
+{% else %}
+  <p>Metaobject not found.</p>
+{% endif %}
+
+==================================================== <br/>
+{{ shop.metaobjects['recipe']['gid://shopify/Metaobject/14530347306'] }}
+{% for metaobject in shop.metaobjects.recipe.values %}
+<p>{{ metaobject.name }} gggggggggggggggg</p>
+<p>{{ metaobject.description }} gggggggggggggg</p>
+{% endfor %}
